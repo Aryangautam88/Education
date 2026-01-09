@@ -1,0 +1,231 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* ================= PAGE ================= */
+.login-page {
+  position: relative;
+  min-height: calc(100vh - 130px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ================= BACKGROUND ================= */
+.login-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: #e1eff0;
+}
+
+.login-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= MAIN CARD ================= */
+.login-card {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* ================= SPLIT CARD ================= */
+.split-card {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ================= LEFT SIDE (IMAGE) ================= */
+
+.card-left {
+  flex: 1.5;
+  padding: 24px;          /* 🔥 yahin se margin feel aayega */
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Image stays proper inside */
+.card-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;    /* optional – premium look */
+}
+
+
+/* ================= RIGHT SIDE (FORM) ================= */
+.card-right {
+  flex: 1;
+  padding: 44px 40px;
+  text-align: center;
+}
+
+/* ================= LOGO ================= */
+.login-logo {
+  width: 56px;
+  margin-bottom: 14px;
+}
+
+/* ================= HEADINGS ================= */
+.card-right h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #164d4d;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7c7c;
+  margin-bottom: 16px;
+}
+
+/* ================= ERROR ================= */
+.error-text {
+  color: #e63946;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* ================= FORM ================= */
+.login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e3e8e8;
+  font-size: 14px;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.login-form input::placeholder {
+  color: #9aa9a9;
+}
+
+.login-form input:focus {
+  border-color: #2f8f8b;
+}
+
+/* ================= PASSWORD FIELD ================= */
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 44px;
+}
+
+.password-field .eye {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #257a76;
+  opacity: 0.7;
+}
+
+.password-field .eye.active {
+  opacity: 1;
+}
+
+/* ================= LOGIN BUTTON ================= */
+.login-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(180deg, #2f8f8b, #257a76);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.login-btn:hover {
+  opacity: 0.95;
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ================= FORGOT PASSWORD ================= */
+.forgot {
+  display: inline-block;
+  margin: 12px 0;
+  font-size: 13px;
+  color: #2f8f8b;
+  text-decoration: none;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+/* ================= GOOGLE BUTTON ================= */
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #e3e8e8;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #3c4043;
+  margin-top: 6px;
+  transition: background 0.2s ease;
+}
+
+.google-btn:hover {
+  background: #f8fafa;
+}
+
+.google-btn img {
+  width: 18px;
+}
+
+/* ================= DISCLAIMER ================= */
+.disclaimer {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #8a9a9a;
+  line-height: 1.5;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .split-card {
+    flex-direction: column;
+  }
+
+  .card-left {
+    display: none;
+  }
+
+  .card-right {
+    padding: 34px 24px;
+  }
+}
