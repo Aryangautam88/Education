@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,16 +16,27 @@ const Navbar = () => {
 
       {/* Menu */}
       <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
-        <li onClick={() => setMenuOpen(false)}>HOME</li>
-        <li onClick={() => setMenuOpen(false)}>COURSES</li>
-        <li onClick={() => setMenuOpen(false)}>LEARNING HUB</li>
-        <li onClick={() => setMenuOpen(false)}>WEBINARS</li>
+      <li onClick={() => setMenuOpen(false)}>
+    <NavLink to="/">HOME</NavLink>
+  </li>
+
+  <li onClick={() => setMenuOpen(false)}>
+    <NavLink to="/courses">COURSES</NavLink>
+  </li>
+
+  <li onClick={() => setMenuOpen(false)}>
+    <NavLink to="/learning-hub">LEARNING HUB</NavLink>
+  </li>
+
+  <li onClick={() => setMenuOpen(false)}>
+    <NavLink to="/webinars">WEBINARS</NavLink>
+  </li>
 
         {/* Mobile Auth */}
         <div className="mobile-buttons">
           <div className="auth-toggle">
           <button
-      className={`auth-btn ${authActive === "login" ? "active" : ""}`}
+      className={`auth-btn1 ${authActive === "login" ? "active" : ""}`}
       onClick={() => {
         setAuthActive("login");
         navigate("/login");
@@ -33,7 +46,7 @@ const Navbar = () => {
     </button>
 
     <button
-      className={`auth-btn ${authActive === "register" ? "active" : ""}`}
+      className={`auth-btn1 ${authActive === "register" ? "active" : ""}`}
       onClick={() => {
         setAuthActive("register");
         navigate("/register");
@@ -49,7 +62,7 @@ const Navbar = () => {
       <div className="navbar-buttons">
         <div className="auth-toggle">
         <button
-      className={`auth-btn ${authActive === "login" ? "active" : ""}`}
+      className={`auth-btn1 ${authActive === "login" ? "active" : ""}`}
       onClick={() => {
         setAuthActive("login");
         navigate("/login");
@@ -59,7 +72,7 @@ const Navbar = () => {
     </button>
 
     <button
-      className={`auth-btn ${authActive === "register" ? "active" : ""}`}
+      className={`auth-btn1 ${authActive === "register" ? "active" : ""}`}
       onClick={() => {
         setAuthActive("register");
         navigate("/register");

@@ -1,200 +1,216 @@
 /* ================= RESET ================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  /* ================= NAVBAR ================= */
-  .navbar {
-    width: 100%;
-    height: 64px;
-    background: #b0d9cc;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1000;
-  }
-  
-  /* ================= LOGO ================= */
-  .navbar-logo {
-    font-weight: 600;
-    font-size: 16px;
-    color: rgba(18, 111, 97, 1);
-  }
-  
-  /* ================= LINKS ================= */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  width: 100%;
+  height: 70px;
+  background: #b0d9cc;
+  display: flex;
+  align-items: center;             
+  justify-content: space-between;
+  padding: 20px 28px;
+  position: relative;
+  z-index: 1000;
+}
+
+/* ================= LOGO ================= */
+.navbar-logo {
+  font-weight: 600;
+  font-size: 16px;
+  color: rgba(18, 111, 97, 1);
+}
+
+/* ================= LINKS ================= */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* li styling */
+.navbar-links li {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(18, 111, 97, 1);
+  position: relative;
+}
+
+/* anchor base */
+.navbar-links li a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
+/* underline base (hidden) */
+.navbar-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: rgba(18, 111, 97, 1);
+  transition: width 0.3s ease-in-out;
+}
+
+/* hover underline ONLY for non-active */
+.navbar-links li a:not(.active):hover::after {
+  width: 100%;
+}
+
+/* active underline */
+.navbar-links li a.active::after {
+  width: 100%;
+}
+
+/* ================= AUTH BUTTONS ================= */
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Outer pill */
+.auth-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  height: 38px;                 
+  background: rgba(18, 111, 97, 1);
+  border-radius: 999px;
+}
+
+/* Buttons */
+.auth-btn1 {
+  min-width: 76px;               
+  height: 30px;
+  padding: 0 16px;
+  margin-bottom: 10px;
+
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+
+  display: grid;                
+  place-items: center;           
+
+  line-height: 1;
+  cursor: pointer;
+
+}
+
+/* Active */
+.auth-btn1.active {
+  background: #e9f7f4;
+  color: rgba(18, 111, 97, 1);
+}
+
+
+
+
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: rgba(18, 111, 97, 1);
+  transition: all 0.3s ease;
+}
+
+/* Hamburger → Cross */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ================= MOBILE ================= */
+.mobile-buttons {
+  display: none;
+}
+
+/* ================= RIGHT DRAWER MENU ================= */
+@media (max-width: 768px) {
   .navbar-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 28px;
-  }
-  
-  /* Menu item */
-  .navbar-links li {
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(18, 111, 97, 1);
-    cursor: pointer;
-    position: relative;
-    padding-bottom: 4px;
-  }
-  
-  /* Desktop underline animation */
-  .navbar-links li::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background: rgba(18, 111, 97, 1);
-    transition: width 0.3s ease-in-out;
-  }
-  
-  .navbar-links li:hover::after {
-    width: 100%;
-  }
-  
-  /* ================= AUTH TOGGLE ================= */
-  .auth-toggle {
-    display: flex;
-    background: rgba(18, 111, 97, 1);
-    border-radius: 999px;
-    padding: 4px;
-  }
-  
-  .auth-btn {
-    height: 30px;
-    padding: 0 16px;
-    border-radius: 999px;
-    border: none;
-    background: transparent;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.25s ease;
-  }
-  
-  .auth-btn.active {
+    position: fixed;
+    top: 64px;
+    right: -320px;
+    width: 260px;
     background: #e9f7f4;
-    color: rgba(18, 111, 97, 1);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 16px;
+    transition: right 0.35s ease-in-out;
   }
-  
-  /* Desktop auth */
+
+  .navbar-links.active {
+    right: 0;
+  }
+
+  .navbar-links li::after {
+    display: none;
+  }
+
+  .navbar-links li {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideIn 0.4s ease forwards;
+  }
+
+  .navbar-links.active li:nth-child(1) { animation-delay: 0.05s; }
+  .navbar-links.active li:nth-child(2) { animation-delay: 0.1s; }
+  .navbar-links.active li:nth-child(3) { animation-delay: 0.15s; }
+  .navbar-links.active li:nth-child(4) { animation-delay: 0.2s; }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Hide desktop auth */
   .navbar-buttons {
+    display: none;
+  }
+
+  /* Show mobile auth */
+  .mobile-buttons {
+    display: flex;
+    margin-top: 12px;
+  }
+
+  /* Show hamburger */
+  .hamburger {
     display: flex;
   }
-  
-  /* ================= HAMBURGER ================= */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-  
-  .hamburger span {
-    width: 22px;
-    height: 2px;
-    background: rgba(18, 111, 97, 1);
-    transition: all 0.3s ease;
-  }
-  
-  /* Hamburger → Cross */
-  .hamburger.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .hamburger.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-  
-  /* ================= MOBILE ================= */
-  .mobile-buttons {
-    display: none;
-  }
-  
-  /* ================= RIGHT DRAWER MENU ================= */
-  @media (max-width: 768px) {
-    .navbar-links {
-        position: fixed;
-        top: 62px;
-        right: -320px;              /* ✅ CLOSED by default */
-        width: 260px;
-        height: auto;               /* ✅ NOT full height */
-        background: #e9f7f4;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;          
-        gap: 16px;                  
-        transition: right 0.35s ease-in-out;
-        /* box-shadow: -8px 10px 20px rgba(0, 0, 0, 0.12); */
-        /* border-radius: 16px;        */
-      }
-    
-      .navbar-links.active {
-        right: 0px;                /* ✅ visible as floating box */
-      }
-  
-    /* Remove underline on mobile */
-    .navbar-links li::after {
-      display: none;
-    }
-  
-    /* Menu item animation (right → left, one by one) */
-    .navbar-links li {
-      opacity: 0;
-      transform: translateX(30px);
-      animation: slideIn 0.4s ease forwards;
-    }
-  
-    .navbar-links.active li:nth-child(2) { animation-delay: 0.05s; }
-    .navbar-links.active li:nth-child(3) { animation-delay: 0.1s; }
-    .navbar-links.active li:nth-child(4) { animation-delay: 0.15s; }
-    .navbar-links.active li:nth-child(5) { animation-delay: 0.2s; }
-  
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-  
-    /* Close icon inside drawer */
-    .menu-close {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      font-size: 22px;
-      font-weight: 600;
-      color: rgba(18, 111, 97, 1);
-      cursor: pointer;
-    }
-  
-    /* Hide desktop auth */
-    .navbar-buttons {
-      display: none;
-    }
-  
-    /* Show mobile auth */
-    .mobile-buttons {
-      display: flex;
-      margin-top: 10px;
-    }
-  
-    /* Show hamburger */
-    .hamburger {
-      display: flex;
-    }
-  }
-  
+}
