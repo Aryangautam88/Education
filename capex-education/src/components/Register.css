@@ -168,7 +168,7 @@ input:focus {
 
 /* PRIMARY BUTTON */
 button {
-    width: 100%;
+    /* width: 100%;
     padding: 13px;
     background: linear-gradient(180deg, #2f8f8b, #257a76);
     ;
@@ -179,13 +179,13 @@ button {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.25s ease; */
 }
 
-button:disabled {
+/* button:disabled {
     opacity: 0.7;
     cursor: not-allowed;
-}
+} */
 
 /* GOOGLE BUTTON */
 .google-btn {

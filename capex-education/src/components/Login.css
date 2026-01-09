@@ -9,7 +9,7 @@
 /* ================= PAGE ================= */
 .login-page {
   position: relative;
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 60px);
   width: 100%;
   display: flex;
   justify-content: center;

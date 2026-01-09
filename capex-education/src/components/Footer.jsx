@@ -73,10 +73,10 @@ const Footer = () => {
           </div>
 
           {/* SUBSCRIBE (RIGHT SIDE, SMALL) */}
-          <div className="subscribe-box">
+          <div className="subscribe-box1">
             <h3>Subscribe to Our Newsletter</h3>
             <p>Get the latest courses and offers directly in your inbox.</p>
-            <div className="newsletter">
+            <div className="newsletter1">
               <input type="email" placeholder="Enter your email" />
               <button>Subscribe</button>
             </div>
