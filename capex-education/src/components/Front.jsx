@@ -119,37 +119,49 @@ const Front = () => {
                 </div>
             </section>
 
-            <section className="courses-section">
-                <div className="courses-header">
-                    <h2>Professional Trading Courses</h2>
-                    <p>
-                        Choose your path to trading mastery with our comprehensive course
-                        offerings
-                    </p>
+            <section className="course-section">
+                {/* HEADER */}
+                <div className="course-header">
+                    {/* LEFT */}
+                    <div className="course-header-left">
+                        <span>OUR COURSES</span>
+                        <h2>Professional Trading Programs</h2>
+                    </div>
+
+                    {/* RIGHT */}
+                    <div className="course-header-right">
+                        <p>
+                            Choose your path to trading mastery with industry-focused,
+                            practical learning programs.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="courses-grid">
+                {/* CARDS */}
+                <div className="course-grid">
                     {courses.map((course, i) => (
-                        <div className="course-card" key={i}>
-                            <div className="course-icon">{course.icon}</div>
-
-                            <h3>{course.title}</h3>
-
-                            <div className="course-tags">
-                                <span>{course.level}</span>
-                                <span>{course.duration}</span>
+                        <div className="image-card" key={i}>
+                            <div className={`course-level ${course.level.toUpperCase().replace(/ /g, "-")}`}>
+                                {course.level}
                             </div>
 
-                            <p className="course-desc">{course.desc}</p>
+                            <div className="card-overlay">
+                                <div className="card-tags">
+                                    <span>{course.duration}</span>
+                                </div>
 
-                            <div className="course-footer">
-                                <span>{course.modules}</span>
-                                <button>View Course</button>
+                                <h3>{course.title}</h3>
+                                <p>{course.desc}</p>
+
+                                <div className="card-footer">
+                                    <button>View Course →</button>
+                                </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </section>
+
 
         </>
     );
