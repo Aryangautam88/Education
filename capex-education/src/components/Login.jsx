@@ -8,13 +8,33 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  /* 🔔 ERROR CARD */
+  const showError = (msg) => {
+    setError(msg);
+    setTimeout(() => setError(""), 3000);
+  };
+
+  /* ✅ SUCCESS CARD + REDIRECT */
+  const showSuccess = (msg) => {
+    setSuccess(msg);
+    setTimeout(() => {
+      setSuccess("");
+      window.location.href = "/"; // or "/dashboard"
+    }, 1000);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
+
+    if (!email || !password) {
+      return showError("Email and password are required");
+    }
 
     try {
+      setLoading(true);
+
       const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -25,19 +45,28 @@ const Login = () => {
       if (!res.ok) throw new Error(data.message);
 
       localStorage.setItem("token", data.token);
+
+      showSuccess("Login successful 🎉");
+
     } catch (err) {
-      setError("Login failed. Try again.");
+      showError(err.message || "Login failed. Try again.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
+    showError("Google login coming soon");
   };
 
   return (
     <div className="login-page">
+
+      {/* 🔔 ERROR CARD */}
+      {error && <div className="error-card">{error}</div>}
+
+      {/* ✅ SUCCESS CARD */}
+      {success && <div className="success-card1">{success}</div>}
 
       {/* BACKGROUND */}
       <picture className="login-bg">
@@ -48,15 +77,12 @@ const Login = () => {
       {/* CARD */}
       <div className="login-card split-card">
 
-        {/* LEFT SIDE (IMAGE) */}
+        {/* LEFT SIDE */}
         <div className="card-left">
-          <img
-            src="/login.png"
-            alt="Illustration"
-          />
+          <img src="/login.png" alt="Illustration" />
         </div>
 
-        {/* RIGHT SIDE (FORM) */}
+        {/* RIGHT SIDE */}
         <div className="card-right">
           <img src="/logo.png" alt="KnowledgePulse" className="login-logo" />
 
@@ -65,15 +91,12 @@ const Login = () => {
             Sign in to continue your learning journey
           </p>
 
-          {error && <p className="error-text">{error}</p>}
-
           <form className="login-form" onSubmit={handleLogin}>
             <input
               type="email"
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
             />
 
             <div className="password-field">
@@ -82,7 +105,6 @@ const Login = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
               />
               <span
                 className={`eye ${showPassword ? "active" : ""}`}

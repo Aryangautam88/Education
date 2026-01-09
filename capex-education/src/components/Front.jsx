@@ -27,33 +27,48 @@ const AnimatedParagraph = ({ text }) => {
 
 const courses = [
     {
-        icon: "📈",
-        title: "Price Action (P.A)",
-        level: "Intermediate",
+        level: "Beginner",
         duration: "8 weeks",
-        desc:
-            "Master the art of reading raw price movements without indicators. Learn to identify market structure, support/resistance, and high-probability setups.",
-        modules: "24 Modules",
+        points: [
+            "Forex market basics",
+            "How charts work",
+            "Understanding candlesticks",
+            "Basic support & resistance",
+            "Risk management fundamentals",
+        ],
     },
     {
-        icon: "🧠",
-        title: "Smart Money Concepts (S.M.C)",
-        level: "Advanced",
+        level: "Intermediate",
         duration: "10 weeks",
-        desc:
-            "Understand institutional trading behavior, order blocks, liquidity pools, and market manipulation techniques used by professional traders.",
-        modules: "32 Modules",
+        points: [
+            "Market structure",
+            "Liquidity concepts",
+            "Supply & demand zones",
+            "Trend & range identification",
+            "Entry & exit strategies",
+            "Multiple timeframe analysis",
+            "Trade journaling",
+            "Risk–reward optimization",
+        ],
     },
     {
-        icon: "🛡️",
-        title: "Capital & Risk Training (C.R.T)",
-        level: "Beginner to Advanced",
+        level: "Advanced",
         duration: "6 weeks",
-        desc:
-            "Develop bulletproof risk management strategies, position sizing, and capital preservation techniques essential for long-term success.",
-        modules: "18 Modules",
+        points: [
+            "Smart money concepts",
+            "Institutional order flow",
+            "Liquidity grabs",
+            "Order blocks",
+            "Inducement & manipulation",
+            "Advanced trade execution",
+            "Session-based trading",
+            "Psychology mastery",
+            "Capital protection systems",
+            "Consistency building",
+        ],
     },
 ];
+
 
 
 const Front = () => {
@@ -98,6 +113,8 @@ const Front = () => {
                             <li>No signals or profit promises</li>
                             <li>Structured learning paths</li>
                             <li>Focus on risk & mindset</li>
+                            <li>Focus on risk & mindset</li>
+
                         </ul>
 
                         <button className="enroll-btn">Enroll Now</button>
@@ -141,7 +158,11 @@ const Front = () => {
                 <div className="course-grid">
                     {courses.map((course, i) => (
                         <div className="image-card" key={i}>
-                            <div className={`course-level ${course.level.toUpperCase().replace(/ /g, "-")}`}>
+
+                            {/* LEVEL BADGE */}
+                            <div
+                                className={`course-level ${course.level.toLowerCase()}`}
+                            >
                                 {course.level}
                             </div>
 
@@ -150,8 +171,12 @@ const Front = () => {
                                     <span>{course.duration}</span>
                                 </div>
 
-                                <h3>{course.title}</h3>
-                                <p>{course.desc}</p>
+                                {/* BULLET POINTS */}
+                                <ul className="course-points">
+                                    {course.points.map((point, idx) => (
+                                        <li key={idx}>{point}</li>
+                                    ))}
+                                </ul>
 
                                 <div className="card-footer">
                                     <button>View Course →</button>
@@ -160,6 +185,7 @@ const Front = () => {
                         </div>
                     ))}
                 </div>
+
             </section>
 
 

@@ -2,12 +2,11 @@ import { useState } from "react";
 import "./Register.css";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-
 const Register = () => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
-        countryCode: "",
+        countryCode: "+91",
         phone: "",
         email: "",
         password: "",
@@ -16,7 +15,25 @@ const Register = () => {
     });
 
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    /* 🔔 ERROR CARD */
+    const showError = (msg) => {
+        setError(msg);
+        setTimeout(() => setError(""), 3000);
+    };
+
+    /* ✅ SUCCESS CARD + REDIRECT */
+    const showSuccess = (msg) => {
+        setSuccess(msg);
+        setTimeout(() => {
+            setSuccess("");
+            window.location.href = "/login"; // 👈 redirect to login
+        }, 1000);
+    };
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -28,7 +45,6 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError("");
 
         const {
             firstName,
@@ -44,20 +60,25 @@ const Register = () => {
         if (
             !firstName ||
             !lastName ||
+            !countryCode ||
             !phone ||
             !email ||
             !password ||
             !confirmPassword
         ) {
-            return setError("All fields are required");
+            return showError("All fields are required");
+        }
+
+        if (password.length < 8) {
+            return showError("Password must be at least 8 characters long");
         }
 
         if (password !== confirmPassword) {
-            return setError("Passwords do not match");
+            return showError("Passwords do not match");
         }
 
         if (!agree) {
-            return setError("Please accept Terms & Conditions");
+            return showError("Please accept Terms & Conditions");
         }
 
         try {
@@ -69,35 +90,37 @@ const Register = () => {
                 body: JSON.stringify({
                     firstName,
                     lastName,
-                    phone: `${countryCode}${phone}`,
+                    countryCode,
+                    phone,
                     email,
                     password,
+                    confirmPassword,
+                    agreedToTerms: agree,
                 }),
             });
 
             const data = await res.json();
-
             if (!res.ok) throw new Error(data.message);
 
-            localStorage.setItem("token", data.token);
-            alert("Account created successfully ✅");
+            showSuccess("Account created successfully 🎉");
         } catch (err) {
-            setError(err.message);
+            showError(err.message || "Something went wrong");
         } finally {
             setLoading(false);
         }
     };
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
 
     return (
         <div className="register-page">
+            {/* 🔔 ERROR CARD */}
+            {error && <div className="error-card">{error}</div>}
+
+            {/* ✅ SUCCESS CARD */}
+            {success && <div className="success-card">{success}</div>}
+
             <div className="register-card">
                 <h2>Create Your Account</h2>
                 <p className="subtitle">Start learning with KnowledgePulse</p>
-
-                {error && <p className="error">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <div className="row">
@@ -130,6 +153,7 @@ const Register = () => {
                             <option value="+92">🇵🇰 +92 (Pakistan)</option>
                             <option value="+880">🇧🇩 +880 (Bangladesh)</option>
                         </select>
+
                         <input
                             type="tel"
                             name="phone"
@@ -142,13 +166,12 @@ const Register = () => {
                         type="email"
                         name="email"
                         placeholder="Email Address"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={handleChange}
                         required
                     />
 
                     <div className="password-wrapper">
                         <input
-                            className="password"
                             type={showPassword ? "text" : "password"}
                             name="password"
                             placeholder="Password"
@@ -162,10 +185,8 @@ const Register = () => {
                         </span>
                     </div>
 
-
                     <div className="password-wrapper">
                         <input
-                            className="confirmpassword"
                             type={showConfirmPassword ? "text" : "password"}
                             name="confirmPassword"
                             placeholder="Confirm Password"
@@ -180,7 +201,6 @@ const Register = () => {
                             {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
                         </span>
                     </div>
-
 
                     <label className="checkbox">
                         <input

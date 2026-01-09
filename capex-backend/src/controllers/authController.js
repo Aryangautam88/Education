@@ -16,7 +16,6 @@ exports.registerUser = async (req, res) => {
       agreedToTerms
     } = req.body;
 
-    // 1️⃣ Validation
     if (
       !firstName ||
       !lastName ||
@@ -26,57 +25,46 @@ exports.registerUser = async (req, res) => {
       !password ||
       !confirmPassword
     ) {
-      return res.status(400).json({
-        message: "All fields are required"
-      });
+      return res.status(400).json({ message: "All fields are required" });
     }
 
-    // 2️⃣ Password match
     if (password !== confirmPassword) {
-      return res.status(400).json({
-        message: "Passwords do not match"
-      });
+      return res.status(400).json({ message: "Passwords do not match" });
     }
 
-    // 3️⃣ Terms checkbox
     if (!agreedToTerms) {
       return res.status(400).json({
         message: "Please accept Terms & Conditions"
       });
     }
 
-    // 4️⃣ Existing user check
-    const existingUser = await User.findOne({ email });
+    const emailLower = email.toLowerCase();
+
+    const existingUser = await User.findOne({ email: emailLower });
     if (existingUser) {
-      return res.status(409).json({
-        message: "User already exists"
-      });
+      return res.status(409).json({ message: "User already exists" });
     }
 
-    // 5️⃣ Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 6️⃣ Save user
     await User.create({
       firstName,
       lastName,
       countryCode,
       phone,
-      email,
+      email: emailLower,
       password: hashedPassword,
       agreedToTerms
     });
 
-    res.status(201).json({
-      message: "Account created successfully"
-    });
+    res.status(201).json({ message: "Account created successfully" });
 
   } catch (error) {
-    res.status(500).json({
-      message: "Server error"
-    });
+    console.error("Register Error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
+
 
 /* ================= LOGIN ================= */
 exports.loginUser = async (req, res) => {

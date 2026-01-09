@@ -5,13 +5,15 @@ const UserSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
+      minlength: 2
     },
 
     lastName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
+      minlength: 2
     },
 
     countryCode: {
@@ -22,24 +24,33 @@ const UserSchema = new mongoose.Schema(
 
     phone: {
       type: String,
-      required: true
+      required: true,
+      match: [/^[0-9]{7,15}$/, "Invalid phone number"]
     },
 
     email: {
       type: String,
       required: true,
       unique: true,
-      lowercase: true
+      lowercase: true,
+      match: [
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        "Invalid email address"
+      ]
     },
 
     password: {
       type: String,
-      required: true
+      required: function () {
+        return this.provider === "local";
+      }
     },
 
     agreedToTerms: {
       type: Boolean,
-      required: true
+      required: function () {
+        return this.provider === "local";
+      }
     },
 
     provider: {

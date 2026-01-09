@@ -12,6 +12,79 @@ body {
     font-family: "Inter", "Segoe UI", sans-serif;
 }
 
+/* ERROR POPUP CARD */
+.error-card {
+    position: fixed;
+    top: 70px;
+    right: 450px;
+    background: linear-gradient(180deg, #2f8f8b, #257a76);
+    ;
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    animation: slideIn 0.3s ease;
+    z-index: 9999;
+    max-width: 260px;
+}
+
+/* ANIMATION */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+    .error-card {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        top: 15px;
+        width: calc(100% - 40px);
+        text-align: center;
+    }
+}
+
+/* SUCCESS POPUP CARD */
+.success-card {
+    position: fixed;
+    top: 70px;
+    right: 450px;
+    background: linear-gradient(180deg, #2f8f8b, #257a76);;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    animation: slideIn 0.3s ease;
+    z-index: 9999;
+    max-width: 280px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .success-card {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        top: 15px;
+        width: calc(100% - 40px);
+        text-align: center;
+    }
+}
+
+
 /* PAGE BACKGROUND */
 .register-page {
     min-height: 100vh;
@@ -19,7 +92,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px;
+    margin-top: -60px;
+    margin-bottom: -60px
 }
 
 
