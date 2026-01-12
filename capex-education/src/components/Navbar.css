@@ -12,7 +12,7 @@
   height: 70px;
   background: #b0d9cc;
   display: flex;
-  align-items: center;             
+  align-items: center;
   justify-content: space-between;
   padding: 20px 28px;
   position: relative;
@@ -51,7 +51,7 @@
   display: inline-block;
 }
 
-/* underline base (hidden) */
+/* underline base */
 .navbar-links li a::after {
   content: "";
   position: absolute;
@@ -63,66 +63,51 @@
   transition: width 0.3s ease-in-out;
 }
 
-/* hover underline ONLY for non-active */
 .navbar-links li a:not(.active):hover::after {
   width: 100%;
 }
 
-/* active underline */
 .navbar-links li a.active::after {
   width: 100%;
 }
 
 /* ================= AUTH BUTTONS ================= */
-
 .navbar-buttons {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-/* Outer pill */
 .auth-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px;
-  height: 42px;                 
+  height: 42px;
   background: rgba(18, 111, 97, 1);
   border-radius: 999px;
 }
 
-/* Buttons */
 .auth-btn1 {
-  min-width: 76px;               
+  min-width: 76px;
   height: 32px;
   padding: 0 16px;
-  /* margin-bottom: 10px; */
-
   border-radius: 999px;
   border: none;
   background: transparent;
-
   font-size: 13px;
   font-weight: 500;
   color: #ffffff;
-
-  display: grid;                
-  place-items: center;           
-
+  display: grid;
+  place-items: center;
   line-height: 1;
   cursor: pointer;
-
 }
 
-/* Active */
 .auth-btn1.active {
   background: #e9f7f4;
   color: rgba(18, 111, 97, 1);
 }
-
-
-
 
 /* ================= HAMBURGER ================= */
 .hamburger {
@@ -140,6 +125,10 @@
 }
 
 /* Hamburger → Cross */
+.hamburger.open span {
+  background: #ffffff; /* open hone pe white */
+}
+
 .hamburger.open span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -159,33 +148,43 @@
 
 /* ================= RIGHT DRAWER MENU ================= */
 @media (max-width: 768px) {
+
   .navbar-links {
     position: fixed;
-    top: 64px;
+    top: 10px;
     right: -320px;
-    width: 260px;
-    background: #e9f7f4;
+    width: 220px;
+
+    /* premium floating card */
+    background: linear-gradient(135deg, #0f766e, #064e3b);
+    border-radius: 22px;
+    box-shadow: -12px 0 30px rgba(0,0,0,0.35);
+
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
-    gap: 16px;
-    transition: right 0.35s ease-in-out;
+    padding: 28px 0;
+    gap: 18px;
+
+    transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .navbar-links.active {
-    right: 0;
+    right: 10px;
   }
 
-  .navbar-links li::after {
-    display: none;
-  }
-
+  /* white menu text */
   .navbar-links li {
+    color: #ffffff;
     opacity: 0;
     transform: translateX(30px);
     animation: slideIn 0.4s ease forwards;
   }
 
+  .navbar-links li a::after {
+    background: #ffffff;
+  }
+
+  /* stagger animation */
   .navbar-links.active li:nth-child(1) { animation-delay: 0.05s; }
   .navbar-links.active li:nth-child(2) { animation-delay: 0.1s; }
   .navbar-links.active li:nth-child(3) { animation-delay: 0.15s; }
@@ -212,5 +211,6 @@
   /* Show hamburger */
   .hamburger {
     display: flex;
+    z-index: 3000; /* menu ke upar rahe, position change nahi */
   }
 }

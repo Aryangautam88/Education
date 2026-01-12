@@ -48,7 +48,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  padding: 20px;   /* 🔥 IMPORTANT: left-right gap yahin se aayega */
 }
 
 /* ================= BACKGROUND ================= */
