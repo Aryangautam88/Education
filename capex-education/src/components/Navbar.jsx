@@ -29,7 +29,7 @@ const Navbar = () => {
   </li>
 
   <li onClick={() => setMenuOpen(false)}>
-    <NavLink to="/webinars">WEBINARS</NavLink>
+    <NavLink to="/webinar">WEBINARS</NavLink>
   </li>
 
         {/* Mobile Auth */}
