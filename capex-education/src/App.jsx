@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import CourseHero from "./components/CourseHero";
+import LearningHub from "./components/LearningHub";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/courses" element={<CourseHero />} />
+        <Route path="/learning-hub" element={<LearningHub />} />
       </Routes>
 
       {/* Footer visible on all pages */}

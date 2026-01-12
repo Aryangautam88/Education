@@ -13,7 +13,7 @@ import {
   FaBalanceScale,
 } from "react-icons/fa";
 
-const words = ["Product", "Team", "Future"];
+const words = ["Skills", "Mindset", "Future"];
 
 
 
