@@ -112,128 +112,141 @@ const Register = () => {
 
     return (
         <div className="register-page">
-            {/* 🔔 ERROR CARD */}
-            {error && <div className="error-card">{error}</div>}
 
-            {/* ✅ SUCCESS CARD */}
-            {success && <div className="success-card">{success}</div>}
-
-            <div className="register-card">
-                <h2>Create Your Account</h2>
-                <p className="subtitle">Start learning with KnowledgePulse</p>
-
-                <form onSubmit={handleSubmit}>
-                    <div className="row">
-                        <input
-                            type="text"
-                            name="firstName"
-                            placeholder="First Name"
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Last Name"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="row">
-                        <select
-                            name="countryCode"
-                            value={formData.countryCode}
-                            className="code"
-                            onChange={handleChange}
-                        >
-                            <option value="+91">🇮🇳 +91 (India)</option>
-                            <option value="+1">🇺🇸 +1 (USA)</option>
-                            <option value="+44">🇬🇧 +44 (UK)</option>
-                            <option value="+61">🇦🇺 +61 (Australia)</option>
-                            <option value="+971">🇦🇪 +971 (UAE)</option>
-                            <option value="+92">🇵🇰 +92 (Pakistan)</option>
-                            <option value="+880">🇧🇩 +880 (Bangladesh)</option>
-                        </select>
-
-                        <input
-                            type="tel"
-                            name="phone"
-                            placeholder="Phone Number"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        onChange={handleChange}
-                        required
-                    />
-
-                    <div className="password-wrapper">
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            name="password"
-                            placeholder="Password"
-                            onChange={handleChange}
-                        />
-                        <span
-                            className="eye-icon"
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            {showPassword ? <FiEyeOff /> : <FiEye />}
-                        </span>
-                    </div>
-
-                    <div className="password-wrapper">
-                        <input
-                            type={showConfirmPassword ? "text" : "password"}
-                            name="confirmPassword"
-                            placeholder="Confirm Password"
-                            onChange={handleChange}
-                        />
-                        <span
-                            className="eye-icon"
-                            onClick={() =>
-                                setShowConfirmPassword(!showConfirmPassword)
-                            }
-                        >
-                            {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
-                        </span>
-                    </div>
-
-                    <label className="checkbox">
-                        <input
-                            type="checkbox"
-                            name="agree"
-                            checked={formData.agree}
-                            onChange={handleChange}
-                        />
-                        I agree to <span>Terms & Conditions</span>
-                    </label>
-
-                    <button type="submit" disabled={loading}>
-                        {loading ? "Creating..." : "Create Account"}
-                    </button>
-                </form>
-
-                <button className="google-btn">
+            <div className="center-card">
+                <div className="register-image-card">
+                    {/* 🔁 Image change option */}
                     <img
-                        src="https://www.svgrepo.com/show/475656/google-color.svg"
-                        alt="Google"
-                        className="google-icon"
+                        className="cardimg"
+                        src="/login.png"
+                        alt="Register Illustration"
                     />
-                    Continue with Google
-                </button>
+                </div>
 
-                <p className="login-link-1">
-                    Already have an account? <span>Login</span>
-                </p>
+                {/* 🔔 ERROR CARD */}
+                {error && <div className="error-card">{error}</div>}
 
-                <p className="note">
-                    This platform is for educational and informational purposes only.
-                    Trading involves risk.
-                </p>
+                {/* ✅ SUCCESS CARD */}
+                {success && <div className="success-card">{success}</div>}
+
+                <div className="register-card">
+                    <h2>Create Your Account</h2>
+                    <p className="subtitle">Start learning with KnowledgePulse</p>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="row">
+                            <input
+                                type="text"
+                                name="firstName"
+                                placeholder="First Name"
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="text"
+                                name="lastName"
+                                placeholder="Last Name"
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="row">
+                            <select
+                                name="countryCode"
+                                value={formData.countryCode}
+                                className="code"
+                                onChange={handleChange}
+                            >
+                                <option value="+91">🇮🇳 +91 (India)</option>
+                                <option value="+1">🇺🇸 +1 (USA)</option>
+                                <option value="+44">🇬🇧 +44 (UK)</option>
+                                <option value="+61">🇦🇺 +61 (Australia)</option>
+                                <option value="+971">🇦🇪 +971 (UAE)</option>
+                                <option value="+92">🇵🇰 +92 (Pakistan)</option>
+                                <option value="+880">🇧🇩 +880 (Bangladesh)</option>
+                            </select>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="Phone Number"
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email Address"
+                            onChange={handleChange}
+                            required
+                        />
+
+                        <div className="password-wrapper">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                placeholder="Password"
+                                onChange={handleChange}
+                            />
+                            <span
+                                className="eye-icon"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <FiEyeOff /> : <FiEye />}
+                            </span>
+                        </div>
+
+                        <div className="password-wrapper">
+                            <input
+                                type={showConfirmPassword ? "text" : "password"}
+                                name="confirmPassword"
+                                placeholder="Confirm Password"
+                                onChange={handleChange}
+                            />
+                            <span
+                                className="eye-icon"
+                                onClick={() =>
+                                    setShowConfirmPassword(!showConfirmPassword)
+                                }
+                            >
+                                {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                            </span>
+                        </div>
+
+                        <label className="checkbox">
+                            <input
+                                type="checkbox"
+                                name="agree"
+                                checked={formData.agree}
+                                onChange={handleChange}
+                            />
+                            I agree to <span>Terms & Conditions</span>
+                        </label>
+
+                        <button className="f-btn" type="submit" disabled={loading}>
+                            {loading ? "Creating..." : "Create Account"}
+                        </button>
+                    </form>
+
+                    <button className="google-btn">
+                        <img
+                            src="https://www.svgrepo.com/show/475656/google-color.svg"
+                            alt="Google"
+                            className="google-icon"
+                        />
+                        Continue with Google
+                    </button>
+
+                    <p className="login-link-1">
+                        Already have an account? <span>Login</span>
+                    </p>
+
+                    <p className="note">
+                        This platform is for educational and informational purposes only.
+                        Trading involves risk.
+                    </p>
+                </div>
+
             </div>
         </div>
     );

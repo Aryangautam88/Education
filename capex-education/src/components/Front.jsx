@@ -69,6 +69,29 @@ const courses = [
     },
 ];
 
+const steps = [
+    {
+        step: "01",
+        title: "Register Your Account",
+        desc: "Create your free account and connect with our learning ecosystem.",
+    },
+    {
+        step: "02",
+        title: "Start Free Trial",
+        desc: "Access free forex basics, market understanding & demo guidance.",
+    },
+    {
+        step: "03",
+        title: "Unlock Live Sessions",
+        desc: "Pay a small fee & attend 2–4 live forex sessions every week.",
+    },
+    {
+        step: "04",
+        title: "Doubt Clearing & Guidance",
+        desc: "Personal guidance, doubt clearance & risk management.",
+    },
+];
+
 
 
 const Front = () => {
@@ -136,6 +159,7 @@ const Front = () => {
                 </div>
             </section>
 
+
             <section className="course-section">
                 {/* HEADER */}
                 <div className="course-header">
@@ -186,6 +210,78 @@ const Front = () => {
                     ))}
                 </div>
 
+            </section>
+
+
+            <section className="learning-steps">
+                <h2 className="steps-heading">How Our Forex Learning Works</h2>
+
+                <div className="steps-container">
+                    {steps.map((item, index) => (
+                        <div
+                            className={`step-card ${index % 2 === 0 ? "left" : "right"}`}
+                            key={index}
+                        >
+                            <div className="step-number">{item.step}</div>
+
+                            <div className="step-content">
+                                <h3>{item.title}</h3>
+                                <p>{item.desc}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+
+            <section className="expert-section">
+                <div className="expert-container">
+
+                    {/* LEFT CONTENT */}
+                    <div className="expert-left">
+                        <span className="expert-badge">EXPERT GUIDANCE</span>
+                        <h2>
+                            Learn From <span>Trained Professionals</span> With Real Market Experience
+                        </h2>
+                        <p>
+                            Our mentors are trained professionals with years of real forex market
+                            experience. They don’t teach theory alone — they share practical
+                            insights, mistakes, psychology & proven learning methods to help you
+                            grow faster.
+                        </p>
+
+                        <ul className="expert-points">
+                            <li> ✔ Experienced & trained mentors</li>
+                            <li> ✔ Practical market-based learning</li>
+                            <li> ✔ Faster & structured learning approach</li>
+                            <li> ✔ Personal guidance & doubt support</li>
+                        </ul>
+                    </div>
+
+                    {/* RIGHT VISUAL */}
+                    <div className="expert-right">
+                        <div className="expert-card">
+                            <h3>5+ Years</h3>
+                            <p>Market Experience</p>
+                        </div>
+
+                        <div className="expert-card">
+                            <h3>Live</h3>
+                            <p>Market Examples</p>
+                        </div>
+
+                        <div className="expert-card">
+                            <h3>1:1</h3>
+                            <p>Doubt Support</p>
+                        </div>
+
+                        <div className="expert-card highlight">
+                            <h3>Fast</h3>
+                            <p>Learning Growth</p>
+                        </div>
+                    </div>
+
+                </div>
             </section>
 
 
