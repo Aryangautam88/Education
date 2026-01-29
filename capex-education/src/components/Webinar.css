@@ -127,7 +127,7 @@ body {
     overflow: hidden;
 }
 
-.webinar-right::after {
+/* .webinar-right::after {
     content: "";
     position: absolute;
     width: 260px;
@@ -136,7 +136,7 @@ body {
     background: radial-gradient(circle, rgba(31, 143, 122, 0.45), transparent 70%);
     bottom: -60px;
     right: -60px;
-}
+} */
 
 /* IMAGE RESPONSIVE SCALE */
 .webinar-right img {
