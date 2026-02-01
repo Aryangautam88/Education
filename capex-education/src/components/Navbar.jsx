@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -7,15 +8,56 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [authActive, setAuthActive] = useState("login");
+
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+  
+    const closeOnScroll = () => {
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+  
+    // 🔥 these are the key ones
+    window.addEventListener("scroll", closeOnScroll, true);
+    window.addEventListener("wheel", closeOnScroll, { passive: true });
+    window.addEventListener("touchmove", closeOnScroll, { passive: true });
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+  
+      window.removeEventListener("scroll", closeOnScroll, true);
+      window.removeEventListener("wheel", closeOnScroll);
+      window.removeEventListener("touchmove", closeOnScroll);
+    };
+  }, [menuOpen]);
+  
+
+  
   return (
     <nav className="navbar">
       {/* Logo */}
       <div className="navbar-logo">KnowledgePulse</div>
 
       {/* Menu */}
-      <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
+      <ul  ref={menuRef} className={`navbar-links ${menuOpen ? "active" : ""}`}>
       <li onClick={() => setMenuOpen(false)}>
     <NavLink to="/">HOME</NavLink>
   </li>
@@ -84,7 +126,7 @@ const Navbar = () => {
       </div>
 
       {/* Hamburger */}
-      <div
+      <div ref={hamburgerRef}
         className={`hamburger ${menuOpen ? "open" : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}
       >
