@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import CourseHero from "./components/CourseHero";
 import LearningHub from "./components/LearningHub";
+import Webinar from "./components/Webinar";
 import ScrollToTop from "./components/ScrollToTop";
 
 import "./App.css";
