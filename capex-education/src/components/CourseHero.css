@@ -1,3 +1,8 @@
+html,body{
+  scroll-behavior: smooth;
+}
+
+
 /* ================= HERO SECTION ================= */
 .course-page-wrapper {
     width: 100%;
@@ -355,13 +360,13 @@ opacity: 1;
 
 /* ------------------------ PROGRAMS ------------------------ */
 .programs-section {
-  padding: 60px 0px;
+  padding: 60px 20px;
   background: #e6f5f2;
 }
 
 /* HEADER */
 .programs-header {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   margin-bottom: 40px;
   display: flex;
@@ -396,7 +401,7 @@ opacity: 1;
 
 /* GRID */
 .programs-grid {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -517,42 +522,122 @@ opacity: 1;
   text-transform: uppercase;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1000px) {
+@media (max-width: 1399px) {
   .programs-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .program-card {
+    width: 100%;
+    height: 500px;
+  }
+
+  .programs-header {
+    padding: 0 20px;
   }
 }
 
-@media (max-width: 900px) {
+
+@media (max-width: 1023px) {
   .programs-header {
     flex-direction: column;
-    text-align: center;
-    gap: 25px;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 20px;
   }
 
   .programs-header-right p {
     max-width: 100%;
+    margin-top: 10px;
+  }
+
+  .programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 0 20px;
+  }
+
+  .program-card {
+    width: 100%;
+    height: 480px;
+  }
+
+  .program-level {
+    font-size: 1.2rem;
+    padding: 8px 18px;
   }
 }
 
-@media (max-width: 600px) {
+
+@media (max-width: 767px) {
+  .programs-section {
+    padding: 40px 0;
+  }
+
+  .programs-header {
+    padding: 0 16px;
+  }
+
+  .programs-header-left h2 {
+    font-size: 1.9rem;
+  }
+
+  .programs-header-right p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
   .programs-grid {
     grid-template-columns: 1fr;
+    padding: 0 16px;
+    gap: 20px;
   }
 
   .program-card {
-    height: 520px;
-    width: 350px;
-    margin: auto;
+    height: auto;
+    min-height: 460px;
+  }
+
+  .program-overlay {
+    padding: 24px;
+  }
+
+  .program-level {
+    font-size: 1.1rem;
+    padding: 6px 16px;
+  }
+
+  .program-points li {
+    font-size: 0.85rem;
+  }
+
+  .program-btn {
+    font-size: 0.9rem;
+    padding: 10px 0;
   }
 }
+
 
 @media (max-width: 400px) {
+  .programs-section{
+    padding: 20px;
+  }
+
+  .programs-header-left h2 {
+    font-size: 1.6rem;
+  }
+
+  .program-level {
+    font-size: 1rem;
+  }
+
   .program-card {
-    width: 330px;
+    min-height: 440px;
   }
 }
+
+
 
 
 

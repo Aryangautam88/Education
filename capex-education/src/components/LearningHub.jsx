@@ -1,10 +1,79 @@
-import React from "react";
+import { useState } from "react";
 import "./LearningHub.css";
 import { FaBookOpen, FaChartLine, FaBrain, FaLightbulb } from "react-icons/fa";
 import { FaFilePdf, FaVideo, FaBlog } from "react-icons/fa";
+import {FaChalkboardTeacher, FaQuestionCircle, FaGraduationCap } from "react-icons/fa";
+import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+const steps = [
+  {
+    icon: <FaBookOpen />,
+    title: "Download Beginner Guide",
+    desc: "Start your journey with our free structured PDF.",
+  },
+  {
+    icon: <FaVideo />,
+    title: "Watch Webinar 1",
+    desc: "Understand Forex market fundamentals clearly.",
+  },
+  {
+    icon: <FaChalkboardTeacher />,
+    title: "Watch Webinar 2",
+    desc: "Learn trading psychology and strategies.",
+  },
+  {
+    icon: <FaQuestionCircle />,
+    title: "Attempt Beginner Quiz",
+    desc: "Evaluate your understanding and track progress.",
+  },
+  {
+    icon: <FaGraduationCap />,
+    title: "Upgrade to Full Course",
+    desc: "Unlock complete professional learning access.",
+  },
+];
+
+const testimonials = [
+  { text: "Webinars cleared my basics. Everything was explained very clearly.", name: "Daniel Carter" },
+  { text: "The free PDF was extremely helpful. Great for beginners.", name: "Sophia Williams" },
+  { text: "Best free Forex content I’ve found online.", name: "Michael Thompson" },
+  { text: "The learning path made everything easy to follow.", name: "Emily Johnson" },
+  { text: "Very high quality content even in the free resources.", name: "James Anderson" },
+  { text: "Perfect platform to start learning Forex seriously.", name: "Olivia Brown" },
+  { text: "The webinars felt professional and structured.", name: "William Scott" },
+  { text: "Amazing experience with the free materials.", name: "Isabella Moore" },
+  { text: "I finally understood risk management clearly.", name: "Ethan Miller" },
+];
+
 
 
 const LearningHub = () => {
+  
+  const [start, setStart] = useState(0);
+
+  const prev = () => {
+    setStart((prev) => (prev - 3 + testimonials.length) % testimonials.length);
+  };
+
+  const next = () => {
+    setStart((prev) => (prev + 3) % testimonials.length);
+  };
+
+  const visible = [
+    testimonials[start],
+    testimonials[(start + 1) % testimonials.length],
+    testimonials[(start + 2) % testimonials.length],
+  ];
+
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  
+
   return (
     <div>
     <div className="learninghub-wrapper">
@@ -32,8 +101,8 @@ const LearningHub = () => {
 
 
     <div className="learninghub-buttons">
-      <button className="btn primary">Explore Learning Hub</button>
-      <button className="btn secondary">Free Resources</button>
+      <button className="btn primary" onClick={() => scrollToSection("learning")}>Explore Learning Hub</button>
+      <button className="btn secondary" onClick={() => scrollToSection("resources")}>Free Resources</button>
     </div>
   </div>
 </section>
@@ -41,13 +110,13 @@ const LearningHub = () => {
 
 
 
-<section className="resources-section">
+<section className="resources-section" id="resources">
   <div className="resources-wrapper">
 
     <div className="resources-head">
       <h2>Free Learning Resources</h2>
       <p>
-        Access valuable trading knowledge at no cost — PDFs, webinars and blogs designed
+        Access valuable trading knowledge at no cost PDFs, webinars and blogs designed
         to strengthen your foundation before entering live markets.
       </p>
     </div>
@@ -83,44 +152,85 @@ const LearningHub = () => {
 </section>
 
 
-<section className="timeline-section">
-      <h2 className="timeline-title">LEARNING HUB</h2>
-      <p className="timeline-subtitle">
-        Explore structured free trading education designed to build clarity, confidence, and discipline.
-      </p>
 
-      <div className="timeline">
 
-        <div className="timeline-item top">
-          <div className="chat-bubble">
-            <h4>Beginner Guides</h4>
-            <p>What is Forex, Currency pairs, Market basics</p>
-          </div>
+
+<section className="learning-split" id="learning">
+      <div className="ls-container">
+
+        {/* Left Side – Only Image */}
+        <div className="ls-left">
+          <img src="learn_trades.avif" alt="Learning" />
         </div>
 
-        <div className="timeline-item bottom">
-          <div className="chat-bubble">
-            <h4>Market Education</h4>
-            <p>Charts, Indicators, Timeframes</p>
+        {/* Right Side – Heading + Text + Steps */}
+        <div className="ls-right">
+          <div className="ls-top">
+            <h2>Your Guided Learning Journey</h2>
+            <p>
+              Follow a clear step-by-step path designed for beginners to build strong
+              Forex foundations before moving to advanced trading.
+            </p>
           </div>
-        </div>
 
-        <div className="timeline-item top">
-          <div className="chat-bubble">
-            <h4>Mindset & Discipline</h4>
-            <p>Psychology, Emotional control, Risk habits</p>
-          </div>
-        </div>
-
-        <div className="timeline-item bottom">
-          <div className="chat-bubble">
-            <h4>Free PDFs</h4>
-            <p>Checklists, Guides, Downloadable resources</p>
+          <div className="ls-steps">
+            {steps.map((step, index) => (
+              <div className="ls-step" key={index}>
+                <div className="ls-icon">{step.icon}</div>
+                <div>
+                  <h4>{step.title}</h4>
+                  <p>{step.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
       </div>
     </section>
+
+
+
+
+    <section className="learner-wall">
+  <div className="lw-container">
+    
+    <div className="lw-header">
+      <h2>Learner Wall</h2>
+      <p>
+        Real feedback from global learners who started their journey
+        with our free learning resources
+      </p>
+    </div>
+
+    <div className="lw-wrapper">
+
+  <div className="lw-list">
+    {visible.map((item, i) => (
+      <div className="lw-item" key={i}>
+        <FaQuoteLeft className="lw-quote" />
+        <p className="lw-text">"{item.text}"</p>
+        <span className="lw-name">— {item.name}</span>
+      </div>
+    ))}
+  </div>
+
+  <div className="lw-controls">
+    <button className="lw-btn" onClick={prev}>
+      <FaChevronLeft />
+    </button>
+    <button className="lw-btn" onClick={next}>
+      <FaChevronRight />
+    </button>
+  </div>
+
+</div>
+
+  </div>
+</section>
+
+
+
 
 
     <section className="blog-section">

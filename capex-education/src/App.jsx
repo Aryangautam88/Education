@@ -6,11 +6,14 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import CourseHero from "./components/CourseHero";
 import LearningHub from "./components/LearningHub";
+import ScrollToTop from "./components/ScrollToTop";
+
 import "./App.css";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       {/* Navbar visible on all pages */}
       <Navbar />
 

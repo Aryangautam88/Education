@@ -82,7 +82,6 @@ const CourseHero = () => {
             "Smart money concepts",
             "Institutional order flow",
             "Liquidity grabs",
-            "Order blocks",
             "Inducement & manipulation",
             "Advanced trade execution",
             "Session-based trading",
@@ -106,6 +105,16 @@ const features = [
   { title: "Psychology Training", desc: "Build discipline, confidence and emotional control.", icon: <FaBrain /> },
   { title: "Risk & Leverage Control", desc: "Protect capital using smart risk management techniques.", icon: <FaBalanceScale /> },
 ];
+
+
+const scrollToSection = (id) => {
+  document.getElementById(id)?.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+
+
+
 
   return (
     <div>
@@ -132,15 +141,27 @@ const features = [
         </div>
 
         <div className="hero-buttons">
-          <button className="btn primary">View Programs</button>
-          <button className="btn secondary">Start Learning</button>
-        </div>
+  <button
+    className="btn primary"
+    onClick={() => scrollToSection("programs")}
+  >
+    View Programs
+  </button>
+
+  <button
+    className="btn secondary"
+    onClick={() => scrollToSection("learning")}
+  >
+    Start Learning
+  </button>
+</div>
+
 
       </div>
     </section>
     </div>
 
-    <section className="learning-model">
+    <section className="learning-model" id="learning">
       <div className="learning-container">
 
         <h2 className="learning-title">
@@ -239,7 +260,7 @@ const features = [
     </section>
 
 
-    <section className="programs-section">
+    <section className="programs-section" id="programs">
   {/* HEADER */}
   <div className="programs-header">
 
