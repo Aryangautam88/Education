@@ -24,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/courses" element={<CourseHero />} />
         <Route path="/learning-hub" element={<LearningHub />} />
+        <Route path="/webinar" element={<Webinar />} />
       </Routes>
 
       {/* Footer visible on all pages */}
